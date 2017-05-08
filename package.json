@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "./node_modules/.bin/webpack"
+    "pack": "./node_modules/.bin/webpack",
+    "pack:watch": "./node_modules/.bin/webpack -w"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/khaosdoctor/react-github#readme",
   "dependencies": {
+    "axios": "^0.16.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
