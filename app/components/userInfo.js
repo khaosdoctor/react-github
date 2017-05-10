@@ -1,4 +1,5 @@
 var React = require('react');
+var UserRepos = require('./userRepos.js');
 
 function userInfo(props) {
    var userInfo = (props.user) ? (
@@ -12,11 +13,17 @@ function userInfo(props) {
             <a href={props.user.data.html_url} className="btn btn-default" role="button">View Details</a>
           </p>
         </div>
+        <div className="col-lg-8">
+         <UserRepos repos={props.repos} />
+       </div>
       </div>
     ) : null;
-
     return userInfo;
+}
 
+userInfo.propTypes = {
+  user: React.PropTypes.object,
+  repos: React.PropTypes.array
 }
 
 module.exports = userInfo;
