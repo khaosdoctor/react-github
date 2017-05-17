@@ -1,14 +1,14 @@
-var axios = require('axios');
+import axios from 'axios';
 
-var GITHOST = 'https://api.github.com/users/';
+var GITHOST = 'https://api.github.com/users';
 
 var GitHubUserService = {
-  getUserByName: function (username) {
-    return axios.get(GITHOST + username);
+  getUserByName (username) {
+    return axios.get(`${GITHOST}/${username}`);
   },
-  getReposByUser: function (username) {
-    return axios.get(GITHOST + username + '/repos');
+  getReposByUser (username) {
+    return axios.get(`${GITHOST}/${username}/repos`);
   }
 }
 
-module.exports = GitHubUserService;
+export default GitHubUserService;

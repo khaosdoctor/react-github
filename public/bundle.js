@@ -10202,47 +10202,56 @@ module.exports = getIteratorFn;
 
 /***/ }),
 /* 88 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var React = __webpack_require__(21);
-var SearchUser = __webpack_require__(109);
-var UserInfo = __webpack_require__(110);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__searchUser__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__userInfo__ = __webpack_require__(110);
 
-var GitHub = React.createClass({
-  displayName: 'GitHub',
 
-  getInitialState: function () {
-    return {
+
+
+class GitHub extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       user: null,
       repos: []
     };
-  },
 
-  updateUser: function (user) {
+    this.updateUser = this.updateUser.bind(this);
+    this.updateRepo = this.updateRepo.bind(this);
+  }
+
+  updateUser(user) {
     this.setState({ user: user });
-  },
+  }
 
-  updateRepo: function (repos) {
+  updateRepo(repos) {
     this.setState({ repos: repos });
-  },
+  }
 
-  render: function () {
-    return React.createElement(
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'container' },
-      React.createElement(SearchUser, {
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__searchUser__["a" /* default */], {
         updateUser: this.updateUser,
         updateRepo: this.updateRepo
       }),
-      React.createElement(UserInfo, {
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__userInfo__["a" /* default */], {
         user: this.state.user,
         repos: this.state.repos
       })
     );
   }
-});
 
-module.exports = GitHub;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (GitHub);
 
 /***/ }),
 /* 89 */
@@ -11099,63 +11108,81 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 108 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var React = __webpack_require__(21);
-var ReactDOM = __webpack_require__(89);
-var GitHub = __webpack_require__(88);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_gitHub__ = __webpack_require__(88);
+
+
+
 
 //O RDOM é uma lib que vai renderizar um componente (ou um JSX como abaixo)
 //Em um elemento cujo ID será passado no segundo argumento
-ReactDOM.render(React.createElement(GitHub, null), document.getElementById('app'));
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_gitHub__["a" /* default */], null), document.getElementById('app'));
 
 /***/ }),
 /* 109 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var React = __webpack_require__(21);
-var GitHubUserService = __webpack_require__(112);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_gitHubUser_js__ = __webpack_require__(112);
 
-var searchUser = React.createClass({
-  displayName: 'searchUser',
 
-  handleSubmit: function (e) {
+
+class searchUser extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
 
-    GitHubUserService.getUserByName(this.refs.username.value).then(function (response) {
-      this.props.updateUser(response);
-    }.bind(this));
+    const { updateUser, updateRepo } = this.props;
+    const { username } = this.refs;
 
-    GitHubUserService.getReposByUser(this.refs.username.value).then(function (response) {
-      this.props.updateRepo(response.data);
-    }.bind(this));
-  },
-  render: function () {
-    return React.createElement(
+    __WEBPACK_IMPORTED_MODULE_1__services_gitHubUser_js__["a" /* default */].getUserByName(username.value).then(response => {
+      updateUser(response);
+    });
+
+    __WEBPACK_IMPORTED_MODULE_1__services_gitHubUser_js__["a" /* default */].getReposByUser(username.value).then(response => {
+      updateRepo(response.data);
+    });
+  }
+
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'jumbotron' },
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h1',
         null,
         'GitHub Info'
       ),
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'row' },
-        React.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'form',
           { className: 'form', onSubmit: this.handleSubmit },
-          React.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'form-group' },
-            React.createElement(
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'label',
               { htmlFor: 'username' },
               'Username:'
             ),
-            React.createElement('input', { name: 'username', type: 'text', placeholder: 'Ex: khaosdoctor', className: 'form-control', ref: 'username' })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'username', type: 'text', placeholder: 'Ex: khaosdoctor', className: 'form-control', ref: 'username' })
           ),
-          React.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'button',
             { type: 'submit', className: 'btn btn-primary' },
             'Buscar'
@@ -11164,131 +11191,141 @@ var searchUser = React.createClass({
       )
     );
   }
-});
+
+}
 
 searchUser.propTypes = {
-  updateUser: React.PropTypes.func.isRequired,
-  updateRepo: React.PropTypes.func.isRequired
+  updateUser: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.func.isRequired,
+  updateRepo: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.func.isRequired
 };
 
-module.exports = searchUser;
+/* harmony default export */ __webpack_exports__["a"] = (searchUser);
 
 /***/ }),
 /* 110 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var React = __webpack_require__(21);
-var UserRepos = __webpack_require__(111);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__userRepos_js__ = __webpack_require__(111);
 
-function userInfo(props) {
-  var userInfo = props.user ? React.createElement(
+
+
+const userInfo = ({ user, repos }) => {
+  var userInfo = user ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
     { className: 'row' },
-    React.createElement(
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'col-lg-4' },
-      React.createElement('img', { src: props.user.data.avatar_url, alt: 'avatar', className: 'img-circle', width: '140', height: '140' }),
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: user.data.avatar_url, alt: 'avatar', className: 'img-circle', width: '140', height: '140' }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h2',
         null,
-        props.user.data.login
+        user.data.login
       ),
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'p',
         null,
-        props.user.data.name
+        user.data.name
       ),
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'p',
         null,
         'Followers: ',
-        props.user.data.followers,
+        user.data.followers,
         ' / Following: ',
-        props.user.data.following
+        user.data.following
       ),
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'p',
         null,
-        React.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'a',
-          { href: props.user.data.html_url, className: 'btn btn-default', role: 'button' },
+          { href: user.data.html_url, className: 'btn btn-default', role: 'button' },
           'View Details'
         )
       )
     ),
-    React.createElement(
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'col-lg-8' },
-      React.createElement(UserRepos, { repos: props.repos })
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__userRepos_js__["a" /* default */], { repos: repos })
     )
   ) : null;
   return userInfo;
-}
-
-userInfo.propTypes = {
-  user: React.PropTypes.object,
-  repos: React.PropTypes.array
 };
 
-module.exports = userInfo;
+userInfo.propTypes = {
+  user: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.object,
+  repos: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.array
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (userInfo);
 
 /***/ }),
 /* 111 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var React = __webpack_require__(21);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
-var UserRepos = React.createClass({
-  displayName: "UserRepos",
 
-  getInitialState: function () {
-    return {
+class UserRepos extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       reposCount: 0
     };
-  },
-  componentWillReceiveProps: function (props) {
+  }
+
+  componentWillReceiveProps(props) {
     this.setState({ reposCount: props.repos.length });
-  },
-  render: function () {
-    var repos = this.props.repos.map(function (repo, key) {
-      return React.createElement(
+  }
+
+  render() {
+    const { repos } = this.props;
+    const reposList = repos.map(function (repo, key) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         { key: key, className: "thumbnail" },
-        React.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           { className: "caption" },
-          React.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "h3",
             null,
             repo.name,
-            React.createElement(
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "span",
               { className: "badge" },
               repo.stargazers_count,
               " Stars"
             )
           ),
-          React.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "p",
             null,
             repo.description
           ),
-          React.createElement(
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "p",
             null,
-            React.createElement(
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "span",
               null,
-              React.createElement(
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "a",
                 { target: "_blank", href: repo.html_url, role: "button", className: "btn btn-primary" },
                 "Repository"
               )
             ),
-            React.createElement(
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "span",
               null,
-              React.createElement(
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "a",
                 { target: "_blank", href: repo.html_url + '/issues', role: "button", className: "btn btn-default" },
                 "Issues (",
@@ -11301,40 +11338,44 @@ var UserRepos = React.createClass({
       );
     });
 
-    return React.createElement(
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       null,
-      React.createElement(
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "h1",
         null,
         this.state.reposCount,
         " repositories"
       ),
-      repos
+      reposList
     );
   }
-});
 
-module.exports = UserRepos;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (UserRepos);
 
 /***/ }),
 /* 112 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var axios = __webpack_require__(90);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
-var GITHOST = 'https://api.github.com/users/';
+
+var GITHOST = 'https://api.github.com/users';
 
 var GitHubUserService = {
-  getUserByName: function (username) {
-    return axios.get(GITHOST + username);
+  getUserByName(username) {
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(`${GITHOST}/${username}`);
   },
-  getReposByUser: function (username) {
-    return axios.get(GITHOST + username + '/repos');
+  getReposByUser(username) {
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(`${GITHOST}/${username}/repos`);
   }
 };
 
-module.exports = GitHubUserService;
+/* harmony default export */ __webpack_exports__["a"] = (GitHubUserService);
 
 /***/ }),
 /* 113 */
